@@ -1,0 +1,332 @@
+/* --- 1. ALGEMENE BASIS --- */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    color: white;
+    background-color: #000;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- 2. ACHTERGROND SLIDESHOW --- */
+.bg-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    /* Zorg dat deze naam exact 'imageAnimation' is */
+    animation: imageAnimation 20s linear infinite; 
+}
+
+/* De timings voor 4 foto's */
+.slide:nth-child(1) { animation-delay: 0s; }
+.slide:nth-child(2) { animation-delay: 5s; }
+.slide:nth-child(3) { animation-delay: 10s; }
+.slide:nth-child(4) { animation-delay: 15s; }
+
+@keyframes imageAnimation {
+    0% { opacity: 0; transform: scale(1); }
+    10% { opacity: 1; } /* Fade in */
+    25% { opacity: 1; } /* Blijf zichtbaar */
+    35% { opacity: 0; transform: scale(1.1); } /* Fade out + zoom */
+    100% { opacity: 0; }
+}
+/* --- 3. PAGINA STRUCTUUR --- */
+.page {
+    display: none;
+    padding: 20px;
+    padding-bottom: 100px; /* Ruimte voor nav */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.page.active {
+    display: block;
+}
+
+section {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* --- 4. HERO / HOME --- */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+}
+
+.boek-nu-knop {
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+}
+
+/* --- 5. GALLERY GRID --- */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.grid img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- 6. PRIJZEN & CARDS --- */
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* --- 8. KNOPPEN & INPUTS --- */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.3);
+    color: white;
+    box-sizing: border-box;
+}
+
+.btn-calc, .btn-whatsapp {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-calc { background: linear-gradient(135deg, #1e90ff, #0052a3); }
+.btn-whatsapp { background: linear-gradient(135deg, #25D366, #1ebe5d); }
+
+/* --- 9. SOCIAL BUTTONS --- */
+.social-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-social {
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.fb { background: #1877F2; }
+.ig { background: #E4405F; }
+.wa { background: #25D366; }
+
+/* --- 10. NAVIGATIE ONDERAAN --- */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 15px 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 1000;
+}
+
+.bottom-nav button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.bottom-nav button.active {
+    color: #25D366;
+    transform: translateY(-5px);
+}
+
+/* --- 11. EXTRA'S (Back to Top & Reveal) --- */
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 85px;
+    right: 20px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 50%;
+    z-index: 999;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 0.8s all ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 12. MOBIELE OPTIMALISATIE --- */
+@media screen and (max-width: 600px) {
+    .hero h1 { font-size: 1.8rem; }
+    section { padding: 20px; margin: 20px 10px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+    .social-buttons { flex-wrap: wrap; }
+    .btn-social { font-size: 12px; padding: 8px 12px; }
+}
+
+.page {
+    background: transparent !important; /* Zorgt dat we door de pagina heen kijken */
+}
+
+section {
+    /* We hadden al een glass-effect, maar we maken hem iets doorzichtiger */
+    background: rgba(0, 0, 0, 0.6) !important; 
+}
+
+/* --- 1. ALGEMENE BASIS --- */
+html {
+    background-color: #000; /* De basislaag */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', 'Poppins', sans-serif;
+    color: white;
+    background: transparent !important; /* Maak de body doorzichtig */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* --- 2. ACHTERGROND SLIDESHOW --- */
+
+.bg-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* DIT VOEGT HET DONKERE FILTER TOE */
+.bg-slideshow::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* 0.6 is 60% zwart. Maak er 0.8 van voor nóg donkerder */
+    z-index: 1; /* Ligt bovenop de slides, maar onder de tekst */
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: imageAnimation 20s linear infinite;
+}
+
+/* Belangrijk: De secties moeten ook doorzichtig zijn */
+.page, .hero {
+    background: transparent !important;
+}
+
+section {
+    background: rgba(0, 0, 0, 0.6) !important; /* Glass effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+}
+
+/* Forceer de tabel van de kalender om zichtbaar te zijn */
+.fc-daygrid-body, 
+.fc-scrollgrid-sync-table {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 300px; /* Dit zorgt dat de dagen weer verschijnen */
+}
+
+/* Zorg dat de rijen niet op 0 pixels blijven staan */
+.fc .fc-daygrid-day {
+    min-height: 60px !important; 
+}
+
+/* Maak de tekst van de dagen (zo, ma, di) zichtbaar */
+.fc-col-header-cell {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 0 !important;
+}
