@@ -330,3 +330,60 @@ section {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px 0 !important;
 }
+.service-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dit maakt de twee kolommen */
+    gap: 10px;
+    margin: 15px 0;
+    text-align: left;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.checkbox-group input {
+    width: 20px; /* Checkboxes hoeven niet 100% breed te zijn */
+    margin: 0;
+}
+
+.checkbox-group label {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.time-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 10px 0;
+}
+
+.time-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.time-group label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: #888;
+}
+
+.time-group input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    border-radius: 8px;
+}
+.leaflet-tile {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}

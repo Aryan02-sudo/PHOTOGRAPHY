@@ -11,6 +11,9 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
     
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -65,7 +68,7 @@
             <div class="card">Shortmovie - SRD 1500</div>
             <div class="card">Commercial - SRD 2000</div>
         </div>
-        <h3>Vervoerskosten zijn Exlusief!</h3>
+        <h3>Vervoerskosten zijn Exclusief!</h3>
     </section>
 
     <section class="page reveal" id="about">
@@ -85,20 +88,54 @@
         <div class="card glass">
             <input type="text" id="name" placeholder="Naam">
             <input type="text" id="phone" placeholder="Telefoon">
-            <input type="text" id="location" placeholder="Locatie">
+            <input type="text" id="location" placeholder="Locatie (Straat + Buurt)">
 
-            <select id="service">
-                <option value="feest">Feestjes</option>
-                <option value="shoot">Fotoshoot</option>
-                <option value="huwelijk">Huwelijk</option>
-                <option value="video">Videografie</option>
-                <option value="short">Shortmovie</option>
-                <option value="commercial">Commercial</option>
-            </select>
+            <label>Kies je diensten:</label>
+            <div class="service-selection">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-shoot" name="service" value="750" data-name="Fotoshoot">
+                    <label for="service-shoot">Fotoshoot (SRD 750/u)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-video" name="service" value="500" data-name="Videografie">
+                    <label for="service-video">Videografie (SRD 500/u)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-feest" name="service" value="500" data-name="Feestje">
+                    <label for="service-feest">Feestje (SRD 500/u)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-huwelijk" name="service" value="450" data-name="Huwelijk">
+                    <label for="service-huwelijk">Huwelijk (SRD 450/u)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-shortmovie" name="service" value="1500" data-name="Shortmovie">
+                    <label for="service-shortmovie">Shortmovie (SRD 1500)</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="service-reclames" name="service" value="2000" data-name="Reclames">
+                    <label for="service-reclames">Reclames (SRD 2000)</label>
+                </div>
+            </div>
 
-            <input type="number" id="hours" placeholder="Uren">
+            <input type="number" id="hours" placeholder="Aantal uren">
+            
+            <div class="time-selection">
+                <div class="time-group">
+                    <label for="start-time">Van:</label>
+                    <input type="time" id="start-time">
+                </div>
+                <div class="time-group">
+                    <label for="end-time">Tot:</label>
+                    <input type="time" id="end-time">
+                </div>
+            </div>
+
             <button class="btn-calc" onclick="calculate()">Bereken prijs</button>
+            
             <h3 id="result"></h3>
+            <div id="map" style="height: 250px; width: 100%; border-radius: 12px; margin-top: 15px; display: none;"></div>
+
             <button class="btn-whatsapp" onclick="sendWhatsApp()">Verstuur via WhatsApp</button>
         </div>
     </section>
@@ -115,34 +152,29 @@
     <button id="backToTop" title="Naar boven">↑</button>
 
     <script src="script.js"></script>
-   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'nl',
-            
-            // --- DIT ZIJN DE FIXES VOOR DE GROOTTE ---
-            height: 'auto',          // Laat de kalender zijn natuurlijke hoogte pakken
-            expandRows: true,        // Zorgt dat de rijen de beschikbare ruimte vullen
-            stickyHeaderDates: true, // Houdt de dagen (ma, di, etc.) in beeld
-            handleWindowResize: true,
-            
-            headerToolbar: { 
-                left: 'prev,next', 
-                center: 'title', 
-                right: '' 
-            },
-
-            // Jouw events
-            events: [
-                { title: 'BEZET: 21:00-23:00', start: '2026-03-28', color: '#ff4d4d' },
-                { title: 'BEZET: 20:00-23:00', start: '2026-04-11', color: '#ff4d4d' },
-                { title: 'BEZET: 16:00-18:00', start: '2026-04-26', color: '#ff4d4d' }
-            ]
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'nl',
+                height: 'auto',
+                expandRows: true,
+                stickyHeaderDates: true,
+                handleWindowResize: true,
+                headerToolbar: { 
+                    left: 'prev,next', 
+                    center: 'title', 
+                    right: '' 
+                },
+                events: [
+                    { title: 'BEZET: 21:00-23:00', start: '2026-03-28', color: '#ff4d4d' },
+                    { title: 'BEZET: 20:00-23:00', start: '2026-04-11', color: '#ff4d4d' },
+                    { title: 'BEZET: 16:00-18:00', start: '2026-04-26', color: '#ff4d4d' }
+                ]
+            });
+            calendar.render();
         });
-        calendar.render();
-    });
-</script>
+    </script>
 </body>
 </html>
