@@ -22,10 +22,11 @@ function showPage(pageId) {
 }
 
 // --- 2. LOCATIE & PRIJS LOGICA MET KAART ---
-const baseLat = 5.8520; 
-const baseLng = -55.2038;
-let map; // Variabele voor de kaart
-let marker; // Variabele voor de pin op de kaart
+// Dit zijn de coördinaten voor Welgedacht C weg 146
+const baseLat = 5.7698; 
+const baseLng = -55.2015; 
+let map; 
+let marker; 
 
 async function calculate() {
     const name = document.getElementById("name").value;
@@ -34,21 +35,22 @@ async function calculate() {
     const phone = document.getElementById("phone").value;
     const selectedServices = document.querySelectorAll('input[name="service"]:checked');
 
-    if (!location || !name || selectedServices.length === 0 || hours <= 0) {
-        alert("Vul a.u.b. alle velden in (Naam, Locatie, Uren en minimaal 1 dienst).");
+    if (!location || !name || selectedServices.length === 0) {
+        alert("Vul a.u.b. je naam, locatie en kies minimaal 1 dienst.");
         return;
     }
 
     try {
-        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`);
+        const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location + ", Suriname")}`);
         const data = await res.json();
         
         let transport = 0;
-        if (data.length > 0) {
+
+        if (data && data.length > 0) {
             const lat2 = parseFloat(data[0].lat);
             const lon2 = parseFloat(data[0].lon);
 
-            // --- KAART UPDATEN ---
+            // Kaart update
             const mapEl = document.getElementById('map');
             mapEl.style.display = "block";
 
@@ -57,12 +59,13 @@ async function calculate() {
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
             } else {
                 map.setView([lat2, lon2], 13);
+                setTimeout(() => map.invalidateSize(), 200);
             }
 
             if (marker) map.removeLayer(marker);
             marker = L.marker([lat2, lon2]).addTo(map).bindPopup(location).openPopup();
 
-            // --- AFSTAND BEREKENEN ---
+            // Haversine formule voor afstand vanaf Welgedacht C
             const R = 6371;
             const dLat = (lat2 - baseLat) * Math.PI / 180;
             const dLon = (lon2 - baseLng) * Math.PI / 180;
@@ -70,13 +73,25 @@ async function calculate() {
                       Math.cos(baseLat * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
                       Math.sin(dLon / 2) ** 2;
             const distance = R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-            transport = Math.round(distance) * 25; 
+            
+            // Reiskosten: SRD 25 per km (heen en terug is niet meegerekend, 
+            // wil je SRD 25 per km voor de totale rit of alleen enkele reis?)
+            transport = Math.round(distance * 100); 
+        } else {
+            alert("Locatie niet gevonden. Probeer: Straatnaam, Wijk.");
+            return;
         }
 
         let serviceTotal = 0;
         let serviceList = [];
         selectedServices.forEach(cb => {
-            serviceTotal += parseFloat(cb.value) * (cb.getAttribute('data-name').toLowerCase().includes('movie') || cb.getAttribute('data-name').toLowerCase().includes('reclame') ? 1 : hours);
+            const serviceName = cb.getAttribute('data-name').toLowerCase();
+            // Vaste prijs voor movie/reclame, anders per uur
+            if (serviceName.includes('movie') || serviceName.includes('reclame')) {
+                serviceTotal += parseFloat(cb.value);
+            } else {
+                serviceTotal += parseFloat(cb.value) * (hours || 1);
+            }
             serviceList.push(cb.getAttribute('data-name'));
         });
 
@@ -88,7 +103,10 @@ async function calculate() {
             hours, total: finalTotal 
         };
 
-        document.getElementById("result").innerText = `Totaal: SRD ${finalTotal},- (incl. SRD ${transport} reiskosten)`;
+        document.getElementById("result").innerHTML = `
+            <strong>Totaal geschat: SRD ${finalTotal},-</strong><br>
+            <span style="font-size: 0.8rem; color: #aaa;">(Diensten: SRD ${serviceTotal} + Reiskosten: SRD ${transport})</span>
+        `;
         
     } catch (error) {
         console.error("Fout:", error);
