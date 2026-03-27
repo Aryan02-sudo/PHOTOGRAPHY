@@ -6,7 +6,7 @@
     <title>Bl4ckEye Photography | Capture your moments</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
@@ -20,123 +20,263 @@
 <body>
     <div class="bg-slideshow">
         <div class="slide" style="background-image: url('DSC_1345.jpg');"></div>
-        <div class="slide" style="background-image: url('DSC_1345.jpg');"></div>
         <div class="slide" style="background-image: url('DSC_2876.jpg');"></div>
         <div class="slide" style="background-image: url('DSC_6009.jpg');"></div>
     </div>
 
-    <section class="hero reveal active" id="home">
-        <div class="overlay">
-            <h1>Bl4ckEye Photography</h1>
-            <p>Capture your moments</p>
-            <button class="boek-nu-knop" onclick="showPage('booking')">Boek Nu</button>
+    <section class="hero active" id="home">
+        <div class="hero-content">
+            <div class="hero-line"></div>
+            <h1 class="glitch-text" data-text="BL4CKEYE">BL4CKEYE</h1>
+            <span class="hero-tagline">PHOTOGRAPHY & VISUALS</span>
+            <p class="hero-description">Transforming moments into lasting memories with a unique touch.</p>
+            <div class="hero-btns">
+                <button class="btn-primary" onclick="showPage('gallery')">Mijn Werk</button>
+                <button class="btn-outline" onclick="showPage('booking')">Boek Nu</button>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="showPage('gallery')">
+            <div class="mouse"></div>
+            <span>Scroll</span>
         </div>
     </section>
 
     <section class="page reveal" id="gallery">
-        <h2>Gallery</h2>
+        <div class="section-header">
+            <span class="subtitle">Portfolio</span>
+            <h2>Gallery</h2>
+        </div>
         <div class="grid">
-            <img src="DSC_5757.jpg" alt="Work 1">
-            <img src="Pic (38).jpg" alt="Work 2">
-            <img src="DSC_8398.jpg" alt="Work 3">
-            <img src="DSC_5358.jpg" alt="Work 4">
-            <img src="DSC_9772.jpg" alt="Work 5">
-            <img src="DSC_1281.jpg" alt="Work 6">
-            <img src="DSC_2876.jpg" alt="Work 7">
-            <img src="Pic (18).jpg" alt="Work 8">
-            <img src="Pic (44).jpg" alt="Work 9">
-            <img src="Pic (39).jpg" alt="Work 10">
-            <img src="Pic (11).jpg" alt="Work 11">
-            <img src="Pic (28).jpg" alt="Work 12">
+            <img src="DSC_5605.jpg" alt="Work 1" class="thumb">
+            <img src="DSC_2323.jpg" alt="Work 2" class="thumb">
+            <img src="_DSC0103.jpg" alt="Work 3" class="thumb">
+            <img src="DSC_5358.jpg" alt="Work 4" class="thumb">
+            <img src="k (140).jpg" alt="Work 5" class="thumb">
+            <img src="Pic (52).jpg" alt="Work 6" class="thumb">
+            <img src="DSC_2876.jpg" alt="Work 7" class="thumb">
+            <img src="Pic (18).jpg" alt="Work 8" class="thumb">
+            <img src="e4.jpg" alt="Work 9" class="thumb">
+            <img src="Pic (39).jpg" alt="Work 10" class="thumb">
+            <img src="Pic (11).jpg" alt="Work 11" class="thumb">
+            <img src="Pic (28).jpg" alt="Work 12" class="thumb">
         </div>
     </section>
 
     <section class="page reveal" id="calendar-section">
+    <div class="section-header">
+        <span class="subtitle">Planning</span>
         <h2>Mijn Beschikbaarheid</h2>
-        <div id="calendar-container">
-            <div id='calendar'></div>
+    </div>
+    
+    <div class="calendar-wrapper card glass">
+        <div class="calendar-info">
+            <div class="info-item"><span class="dot available"></span> Vrij</div>
+            <div class="info-item"><span class="dot busy"></span> Bezet</div>
+            <div class="info-item"><i class="fas fa-info-circle"></i> Klik op een datum voor details</div>
         </div>
-    </section>
+        <div id='calendar'></div>
+    </div>
 
-    <section class="page reveal" id="pricing">
-        <h2>Prijzen</h2>
-        <div class="pricing-grid">
-            <div class="card">Feestjes - SRD 500 / uur</div>
-            <div class="card">Fotoshoot - SRD 750 / uur</div>
-            <div class="card">Huwelijk - SRD 450 / uur</div>
-            <div class="card">Videografie - SRD 500 / uur</div>
-            <div class="card">Shortmovie - SRD 1500</div>
-            <div class="card">Commercial - SRD 2000</div>
+    <div class="calendar-footer">
+        <p>Staat je datum op bezet? <a href="#" onclick="showPage('about')">Contacteer mij</a> voor eventuele reservelijsten.</p>
+    </div>
+</section>
+
+   <section class="page reveal" id="pricing">
+    <div class="section-header">
+        <span class="subtitle">Investering</span>
+        <h2>Services & Tarieven</h2>
+    </div>
+
+    <div class="pricing-container">
+        <div class="price-card glass">
+            <div class="card-icon"><i class="fas fa-camera"></i></div>
+            <h3>Fotoshoot</h3>
+            <div class="price-tag">SRD 750<span>/uur</span></div>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Portret & Lifestyle</li>
+                <li><i class="fas fa-check"></i> High-end Retouching</li>
+                <li><i class="fas fa-check"></i> Binnen 48u geleverd</li>
+            </ul>
+            <button class="btn-select" onclick="selectService('service-shoot')">Selecteer</button>
         </div>
-        <h3>Vervoerskosten zijn Exclusief!</h3>
-    </section>
+
+        <div class="price-card glass featured">
+            <div class="card-icon"><i class="fas fa-video"></i></div>
+            <h3>Videografie</h3>
+            <div class="price-tag">SRD 500<span>/uur</span></div>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> 4K Cinematic beelden</li>
+                <li><i class="fas fa-check"></i> Kleurbewerking incl.</li>
+                <li><i class="fas fa-check"></i> Social Media edits</li>
+            </ul>
+            <button class="btn-select" onclick="selectService('service-video')">Selecteer</button>
+        </div>
+
+        <div class="price-card glass">
+            <div class="card-icon"><i class="fas fa-ring"></i></div>
+            <h3>Huwelijk</h3>
+            <div class="price-tag">SRD 450<span>/uur</span></div>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Hele dag vastlegging</li>
+                <li><i class="fas fa-check"></i> Luxe Photo Album optie</li>
+                <li><i class="fas fa-check"></i> Onbeperkt aantal foto's</li>
+            </ul>
+            <button class="btn-select" onclick="selectService('service-huwelijk')">Selecteer</button>
+        </div>
+
+        <div class="price-card glass">
+            <div class="card-icon"><i class="fas fa-birthday-cake"></i></div>
+            <h3>Feestje</h3>
+            <div class="price-tag">SRD 500<span>/uur</span></div>
+            <ul class="card-features">
+                <li><i class="fas fa-check"></i> Event Fotografie</li>
+                <li><i class="fas fa-check"></i> Sfeer & Candid shots</li>
+                <li><i class="fas fa-check"></i> Directe download link</li>
+            </ul>
+            <button class="btn-select" onclick="selectService('service-feest')">Selecteer</button>
+        </div>
+    </div>
+
+    <div class="pricing-container secondary-grid" style="margin-top: 25px;">
+        <div class="price-card glass wide">
+            <div class="card-icon"><i class="fas fa-film"></i></div>
+            <div>
+                <h3>Shortmovie</h3>
+                <div class="price-tag">SRD 1500<span>/vast</span></div>
+            </div>
+            <button class="btn-select" onclick="selectService('service-shortmovie')">Boek Project</button>
+        </div>
+
+        <div class="price-card glass wide">
+            <div class="card-icon"><i class="fas fa-ad"></i></div>
+            <div>
+                <h3>Reclames</h3>
+                <div class="price-tag">SRD 2000<span>/vast</span></div>
+            </div>
+            <button class="btn-select" onclick="selectService('service-reclames')">Boek Project</button>
+        </div>
+    </div>
+
+    <div class="pricing-extra card glass">
+        <p><i class="fas fa-info-circle"></i> <strong>Vervoer:</strong> Automatische berekening op basis van afstand vanaf Welgedacht C weg.</p>
+    </div>
+</section>
 
     <section class="page reveal" id="about">
-        <h2>About Me</h2>
-        <div class="card glass">
-            <p>Ik ben een professionele fotograaf gespecialiseerd in events, portraits en commercial work. Passie voor beeld, oog voor detail. Als fotograaf en visueel ontwerper transformeer ik momenten in blijvende herinneringen. Gevestigd in Suriname, werk ik met de nieuwste technieken om elk beeld die unieke 'Bl4ckeye' touch te geven.</p>
+    <div class="section-header">
+        <span class="subtitle">Mijn Verhaal</span>
+        <h2>About Bl4ckeye</h2>
+    </div>
+
+    <div class="about-container">
+        <div class="about-image">
+            <div class="image-wrapper">
+                <img src="vv.jpg" alt="Aryan Boedhoe">
+                <div class="experience-badge">
+                    <span>5+</span>
+                    <p>Jaar Ervaring</p>
+                </div>
+            </div>
         </div>
-        <div class="social-buttons">
-            <a href="https://www.facebook.com/ARYANNthegekke" target="_blank" class="btn-social fb"><i class="fab fa-facebook"></i> Facebook</a>
-            <a href="https://www.instagram.com/bl4ckeyephotography.su/" target="_blank" class="btn-social ig"><i class="fab fa-instagram"></i> Instagram</a>
-            <a href="https://wa.me/5978909628" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+        <div class="about-text">
+            <h3>"Beelden die het verhaal vertellen dat woorden niet kunnen vangen."</h3>
+            <p>Ik ben een professionele fotograaf en visueel ontwerper gevestigd in Suriname. Met een scherp oog voor detail en een passie voor cinematische beelden, help ik momenten vast te leggen en merken te versterken.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-camera-retro"></i>
+                    <h4>Fotografie</h4>
+                    <p>Events & Portretten</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-video"></i>
+                    <h4>Videografie</h4>
+                    <p>Cinematic Shorts</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-magic"></i>
+                    <h4>Editing</h4>
+                    <p>High-end Retouching</p>
+                </div>
+            </div>
+
+            <div class="social-buttons about-socials">
+                <a href="https://www.facebook.com/ARYANNthegekke" target="_blank" class="btn-social fb"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/bl4ckeyephotography.su/" target="_blank" class="btn-social ig"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5978909628" target="_blank" class="btn-social wa"><i class="fab fa-whatsapp"></i></a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <section class="page reveal" id="booking">
-        <h2>Boeken</h2>
-        <div class="card glass">
-            <input type="text" id="name" placeholder="Naam">
-            <input type="text" id="phone" placeholder="Telefoon">
-            <input type="text" id="location" placeholder="Locatie (Straat + Buurt)">
+        <div class="section-header">
+            <span class="subtitle">Contact</span>
+            <h2>Boeken</h2>
+        </div>
+        <div class="card glass booking-form">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Naam">
+                <input type="text" id="phone" placeholder="Telefoon">
+                <input type="text" id="location" placeholder="Locatie (Straat + Buurt)" onchange="calculate(true)">
+            </div>
 
-            <label>Kies je diensten:</label>
+            <label class="label-title">Kies je diensten:</label>
             <div class="service-selection">
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-shoot" name="service" value="750" data-name="Fotoshoot">
+                    <input type="checkbox" id="service-shoot" name="service" value="750" data-name="Fotoshoot" onchange="calculate(true)">
                     <label for="service-shoot">Fotoshoot (SRD 750/u)</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-video" name="service" value="500" data-name="Videografie">
+                    <input type="checkbox" id="service-video" name="service" value="500" data-name="Videografie" onchange="calculate(true)">
                     <label for="service-video">Videografie (SRD 500/u)</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-feest" name="service" value="500" data-name="Feestje">
+                    <input type="checkbox" id="service-feest" name="service" value="500" data-name="Feestje" onchange="calculate(true)">
                     <label for="service-feest">Feestje (SRD 500/u)</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-huwelijk" name="service" value="450" data-name="Huwelijk">
+                    <input type="checkbox" id="service-huwelijk" name="service" value="450" data-name="Huwelijk" onchange="calculate(true)">
                     <label for="service-huwelijk">Huwelijk (SRD 450/u)</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-shortmovie" name="service" value="1500" data-name="Shortmovie">
+                    <input type="checkbox" id="service-shortmovie" name="service" value="1500" data-name="Shortmovie" onchange="calculate(true)">
                     <label for="service-shortmovie">Shortmovie (SRD 1500)</label>
                 </div>
                 <div class="checkbox-group">
-                    <input type="checkbox" id="service-reclames" name="service" value="2000" data-name="Reclames">
+                    <input type="checkbox" id="service-reclames" name="service" value="2000" data-name="Reclames" onchange="calculate(true)">
                     <label for="service-reclames">Reclames (SRD 2000)</label>
                 </div>
             </div>
 
-            <input type="number" id="hours" placeholder="Aantal uren">
-            
             <div class="time-selection">
                 <div class="time-group">
-                    <label for="start-time">Van:</label>
+                    <label>Uren:</label>
+                    <input type="number" id="hours" placeholder="0" oninput="calculate(true)">
+                </div>
+                <div class="time-group">
+                    <label>Van:</label>
                     <input type="time" id="start-time">
                 </div>
                 <div class="time-group">
-                    <label for="end-time">Tot:</label>
+                    <label>Tot:</label>
                     <input type="time" id="end-time">
                 </div>
             </div>
 
-            <button class="btn-calc" onclick="calculate()">Bereken prijs</button>
+            <button class="btn-calc modern-btn" onclick="calculate()">Bereken prijs</button>
             
-            <h3 id="result"></h3>
-            <div id="map" style="height: 250px; width: 100%; border-radius: 12px; margin-top: 15px; display: none;"></div>
+            <div id="map" style="height: 200px; width: 100%; border-radius: 12px; margin-top: 15px; display: none;"></div>
 
-            <button class="btn-whatsapp" onclick="sendWhatsApp()">Verstuur via WhatsApp</button>
+            <div class="price-display-container">
+                <p>Totaal geschat:</p>
+                <h2 id="total-display">0 SRD</h2>
+                <div id="result"></div>
+            </div>
+
+            <button class="btn-whatsapp modern-btn" onclick="sendWhatsApp()">Verstuur via WhatsApp <i class="fab fa-whatsapp"></i></button>
         </div>
     </section>
 
@@ -159,14 +299,7 @@
                 initialView: 'dayGridMonth',
                 locale: 'nl',
                 height: 'auto',
-                expandRows: true,
-                stickyHeaderDates: true,
-                handleWindowResize: true,
-                headerToolbar: { 
-                    left: 'prev,next', 
-                    center: 'title', 
-                    right: '' 
-                },
+                headerToolbar: { left: 'prev,next', center: 'title', right: '' },
                 events: [
                     { title: 'BEZET: 21:00-23:00', start: '2026-03-28', color: '#ff4d4d' },
                     { title: 'BEZET: 20:00-23:00', start: '2026-04-11', color: '#ff4d4d' },
@@ -176,5 +309,11 @@
             calendar.render();
         });
     </script>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div id="caption"></div>
+</div>
 </body>
 </html>
