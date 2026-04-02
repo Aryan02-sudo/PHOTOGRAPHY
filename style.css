@@ -963,3 +963,102 @@ input:focus {
     80% { clip: rect(91px, 9999px, 32px, 0); }
     100% { clip: rect(58px, 9999px, 71px, 0); }
 }
+
+.packages-container {
+    padding: 50px 20px;
+    text-align: center;
+    background: #0a0a0a; /* Donkere basis */
+}
+
+.section-title {
+    color: #fff;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.packages-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.05); /* Zeer licht doorzichtig */
+    backdrop-filter: blur(10px); /* De 'Glass' blur */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    width: 300px;
+    color: #fff;
+    transition: transform 0.3s ease, border 0.3s ease;
+    position: relative;
+}
+
+.glass-card:hover {
+    transform: translateY(-10px);
+    border: 1px solid #00ff88; /* Jouw neon-groene kleur */
+}
+
+/* Accent voor de middelste kaart */
+.glass-card.featured {
+    border: 2px solid #00ff88;
+    background: rgba(0, 255, 136, 0.03);
+}
+
+.badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #00ff88;
+    color: #000;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.card-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #00ff88;
+    margin-bottom: 25px;
+}
+
+.card-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.card-features li {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.card-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.card-btn:hover {
+    background: #00ff88;
+}
